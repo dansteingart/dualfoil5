@@ -1,0 +1,163 @@
+50        ! lim, limit on number of iterations
+150.0d-6  ! h1,  thickness of negative electrode (m)
+220.d-06  ! h2,  thickness of separator (m)
+285.0d-06 ! h3,  thickness of positive electrode (m)
+24.d-06   ! hcn, thickness of negative current collector (m)
+0.d-06    ! hcp, thickness of positive current collector (m) 
+80        ! n1,  number of nodes in negative electrode(set=0 if in foil mode)
+40        ! n2,  number of nodes in separator
+80        ! n3,  number of nodes in positive electrode
+30	    ! n4, num nodes in solid particle
+0	    ! mvdc1, flag for variable solid diff coeff in anode
+0         ! mvdc3, flag for variable solid diff coeff in cathode
+10	    !lims, number of iterations for solid phase convergence
+298.0d0   ! T temperature (K)
+6912.d0   ! xi(1,1), initial salt concentration (mol/m3)
+0.5d0     ! x,initial stoichiometric parameter for neg. (ignored if n1=0)
+0.5d0     ! y,initial stoichiometric parameter for positive based on formula unit where 0<y<1
+300.0d0    ! tmmax, maximum time step size (s)
+2.5d-14   ! dfs1, (ignored in Foil mode) diffusion coef. in negative solid (m2/s) (mid-range)
+2.5d-14   ! dfs3,  diffusion coef. in positive solid (m2/s) (mid-range)
+4.0d-06   ! Rad1,  radius of negative particles (m) (ignored in Foil mode)
+6.0d-06   ! Rad3,  radius of positive particles (m)
+0.30d0    ! ep1,   volume fraction of electrolyte in negative electrode
+0.0d0     ! epp1,  volume fraction of polymer in negative electrode
+0.10d0    ! epf1,  volume fraction of inert filler in negative electrode
+0.15d0    ! epg1, volume fraction of gas phase negative
+0.55d0    ! ep2, ep2+epp2=1.0  volume fraction of electrolyte in separator
+0.0d0     ! epp2,  volume fraction of polymer in separator
+0.10d0    ! epg2, volume fraction of gas phase separator
+0.30d0    ! ep3,   volume fraction of electrolyte in positive electrode
+0.0d0     ! epp3,  volume fraction of polymer in positive electrode
+0.120d0   ! epf3,  volume fraction of pure nickel in positive
+0.15d0    ! epg3, volume fraction of gas phase in positive
+124.28    ! sig1,  conductivity of negative matrix (S/m) (ignored in Foil mode)
+123.43    ! sig3,  conductivity of positive matrix (S/m)
+1.5d0     ! rka1,  rate constant for negative reaction (different definition than Li)
+6.0d0     ! rka3,  rate constant for positive reaction (different definition than Li)
+0.0d0     ! ranode film resistance (ohm-m2)
+0.0d0     ! rcathde,  cathode film resistance (ohm-m2)
+350.d0    ! cot1, coulombic capacity of negative material (mAh/g)
+259.0d0   ! cot3, coulombic capacity of positive material (mAh/g)
+1292.7d0  ! re,   density of electrolyte (kg/m3)
+7500.0d0  ! rs1,  density of negative insertion material (kg/m3)
+3550.0d0  ! rs3,  density of positive insertion material (kg/m3)
+1850.d0   ! rf,   density of inert filler (kg/m3)
+1780.d0   ! rpl, (not used here) density of polymer material (kg/m3)
+1150.d0   ! rc,   density of inert separator material (kg/m3)
+7750.0d0  ! rcn,  density of negative current collector (kg/m3)
+8800.0d0  ! rcp,  density of positive current collector (kg/m3)
+4.3d0     ! htc, (0.5)  heat-transfer coefficient at ends of cell stack (W/m2K)
+900.0d0   ! Cp,  heat capacity of system (J/kg-K)
+298.0d0   ! Tam,    ambient air temperature (K)
+1         ! ncell,  number of cells in a cell stack    
+2         ! lht,    0 uses htc,  1 calcs htc,  2 isothermal
+1         ! il1,    1 for long print-out  0 for short print-out
+5         ! il2,    prints every il2 th node in long print-out
+1         ! il3,    prints every il3 th time step in long print-out
+1         ! lflag,  0 for electrolyte in separator only, 1 for uniform
+0         ! imp,  0 for no impedance, 1 for impedance
+0.0d0     ! capp1, capacitance of negative material (F/m2)
+0.0d0     ! capp3, capacitance of positive material (F/m2)
+0         ! lpow    0 for no power peaks, 1 for power peaks
+0         ! jsol    calculate solid profiles if 1 < jsol < nj
+3	    ! nside	  flag for side reactions, 0 (off) or 1-3 for number
+1.1d-8    ! rksa1   rate constant side reaction 1 negative (oxygen recombination)
+1.8d-12     ! rksc1   rate constant side reaction 1 positive (oxygen evolution)
+8.0d-9    ! rksa2   rate constant side reaction 2 negative (hydrogen evolution) 
+0.0d0     ! rksc2   rate constant side reaction 2 positive (none) 
+5.0d-8    ! rksa3   rate constant side reaction 3 negative (hydrogen absorption)
+0.0d0     ! rksc3   rate constant side reaction 3 positive (none)
+7         ! nneg    see below
+13        ! nprop   see below
+12        ! npos    see below
+2         ! lcurs,  number of current changes
+-10.0d0  2000.0d0  1  0.9d0  1.8d0 ! Overcharge at 10 A/m2 with low/high cutoff 0.9/1.8 V
+0.0d0	    20.0d0   1  0.9d0  1.8d0 ! Relax for 20 minutes with low/high cutoff 0.9/1.8 V
+
+
+    DUAL LITHIUM ION CELL SIMULATION 
+
+	EXPLANATIONS
+lines 20-22: ep1, epp1, and epf1
+	Set equal to 0.0 when running in Foil mode (metn = 1)
+
+lines 34 to 35: cot1,cot3
+     cot1   coulombic capacity of negative electrode (mAh/g)
+           when x=1 in LixC6
+     cot3   coulombic capacity of positive electrode (mAh/g)
+           when y=1 in LiyCoO2 (332.8), Li1+yMn2O4(144.50)
+
+line 50: il1
+          1 gives long print-out no matter if a run converges or not
+            The long print-out stops at t(noncovergence).
+          0 gives short print-out if a run converges but a long 
+            print-out if the run does not converge.   
+
+line 59: lcurs,  number of current changes
+
+line 60 onward:  cu(i), tt(i), mc(i)  
+     cu(i) The ith value of the current (A/m2) or potential (V) of 
+           the operation
+     tt(i) The ith value of the time (min) or cutoff potential (V) 
+           of the operation
+     mc(i) The mode of discharge; 0 for potentiostatic, 1 for galvanostatic
+	   for a given time, 2 for galvanostatic to a cutoff potential, -2 for
+	   specified power mode, -3 for specified load
+
+nneg:
+    1 ! Li foil
+    2 ! Carbon (petroleum coke)
+    3 ! MCMB 2528 graphite (Bellcore) (0.01 < x < 0.99)
+    4 ! TiS2
+    5 ! Tungsten oxide (LixWO3 with 0<x<0.67)
+    6 ! Lonza KS6 graphite (Bellcore)
+    7 ! Albertus MH 
+    8 ! add your own
+
+nprop:
+    1 ! AsF6 in methyl acetate
+    2 ! Perchlorate in PEO
+    3 ! Sodium Triflate in PEO
+    4 ! LiPF6 in PC (Sony cell simulation)
+    5 ! Perchlorate in PC (West simulation)
+    6 ! Triflate in PEO
+    7 ! LiPF6 in EC/DMC and p(VdF-HFP) (Bellcore)
+    8 ! LiPF6 in EC/DMC and p(VdF-HFP) (Bellcore) cell #2
+    9 ! Ideal ion exchange membrane
+   10 ! TFSI in PEMO at 40 C (oxymethylene-linked PEO) (LBL)
+   11 ! LiPF6 in EC:DMC (liquid)
+   12 ! LiTFSI in PEO at 85 C (LBL)
+   13 ! Paxton 30% KOH in H2O
+   14 ! Add your own electrolyte
+
+npos:
+    1 ! TiS2
+    2 ! Spinel Mn2O4 (lower plateau)
+    3 ! NaCoO2:  Sodium cobalt oxide (P2 phase, 0.3<y<0.92)
+    4 ! Spinel Mn2O4 (upper plateau) (0.2 < y < 1.0)
+    5 ! Tungsten oxide (LixWO3 with 0<x<0.67)
+    6 ! CoO2 (Cobalt dioxide) (0.5 < y < 0.99)
+    7 ! V2O5 (Vanadium oxide) (0 < y < 0.95)
+    8 ! Ni0.8Co0.2O2 (Gen 1) (0.4 < y < 0.99)
+    9 ! Spinel Mn2O4 (Bellcore)
+    10 ! V6O13 (vanadium oxide) (LiyV02.167, 0.05 < y < 1.0)
+    11 ! LiAl0.2Mn1.8O4F0.2 (Bellcore doped spinel) (0.21 < y < 1.0)
+    12 ! Albertus NiOOHHy 
+    13 ! Add your own positive electrode
+
+Density and coulombic capacity for commonly-used materials
+
+Material      Density (kg/m3)   Coulombic capacity (mAh/g)
+--------      --------------    -------------------------
+Li metal         534               3862.5
+C6               2260              372
+LiMn2O4          4280              148
+LiCoO2           5010              274
+Li8V6O13         3900              417.4 
+LiTiS2           2285              225
+Cu               8954              ---  
+Al               2707              ---
+Carbon black     1950              ---
+PVDF binder      1770              ---
+
