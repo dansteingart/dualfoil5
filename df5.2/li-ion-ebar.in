@@ -1,0 +1,22 @@
+000.d0    ! EbarS1 Activation energy, Ea/R, for solid state diffusion, negative 
+000.d0    ! EbarS3 Activation energy, Ea/R, for solid state diffusion, positive 
+4000.d0   ! Ebarkap  Activation energy for electrolyte conductivity 
+4000.d0   ! EbarD   Activation energy for electrolyte diffusion 
+4000.d0   ! Ebarka  Activation energy for negative kinetics 
+4000.d0   ! Ebarkc  Activation energy for positive kinetics 
+4000.d0   ! Ebarks1a Activation energy for neg, O2 side rxn
+4000.d0   ! Ebarks1c Activation energy for pos, O2 side rxn
+4000.d0   ! Ebarks2a Activation energy for evol, H2 side rxn
+4000.d0   ! Ebarks2c Activation energy for recom, H2 side rxn
+4000.d0   ! Ebarks3a Activation energy for neg, shuttle side rxn
+4000.d0   ! Ebarks3c Activation energy for pos, shuttle side rxn
+4000.d0   ! Ebarr1  Activation energy, film resistance anode 
+4000.d0   ! Ebarr3  Activation energy, film resistance cathode 
+
+
+! - All activation energies are given as Ea/R, and have units of K
+! - The solid-state diffusion activation energies are set to zero to
+!   remind the user that the superposition integral is only valid
+!   for a constant diffusion coefficient.  The variable diffusion
+!   coefficient feature should be activated to use nonzero values
+!   of the solid-state activation energies.
